@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: verse-api
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        value: verse_admin_2026
+    disk:
+      name: verse-data
+      mountPath: /opt/render/project/src
+      sizeGB: 1
+      
